@@ -1,7 +1,9 @@
 package com.example.inventorysystem.inventoryapplication
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log.d
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,12 @@ class MainActivity : AppCompatActivity() {
         btnAdd.setOnClickListener {
             startActivity(Intent(this, AddProductActivity::class.java))
         }
+
+        val preferences = getSharedPreferences("database", Context.MODE_PRIVATE)
+        val savedName = preferences.getString("savedProductName", "This value does not exist")
+        d("shrawan", "saved message: $savedName")
+
+        tvSavedProduct.text = savedName
 
     }
 }
