@@ -33,12 +33,24 @@ class MainActivity : AppCompatActivity() {
 
   //      tvSavedProduct.text = savedName
 
-        val products = listOf("Building", "Car", "Truck" , "Laptop", "Mobile")
+        val products = listOf(
+            Product("iPad", "shrawan", 2005, 260.50),
+            Product("Pixel", "sudeep", 2006, 350.00),
+            Product("Kotlin", "gunjan", 2009, 12.00),
+            Product("Laptop", "sabin", 2020, 98.60),
+            Product("Mobile", "sajin", 2019, 100.60)
+        )
+
+        var totalCost = 0.0
 
         products.forEach {
-            d("shrawan","Product is: $it")
-            tvProduct.append("$it \n\n ")
+            tvProduct.append("${it.name} - ${it.owner} - ${it.yearPublished} - Rs. ${it.cost} \n\n ")
+            totalCost += it.cost
         }
+
+        d("shrawan", "Total cost $totalCost")
+
+        tvTotalCost.text = "Rs $totalCost"
 
     }
 }
