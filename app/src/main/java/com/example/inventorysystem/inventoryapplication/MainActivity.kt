@@ -18,47 +18,60 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
-    companion object {
-       private const val minCost = 100
-       private const val maxCost = 8000
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+        showInexpensive()
+
         fab.setOnClickListener {
             startActivity(Intent(this, AddProductActivity::class.java))
         }
-//        "Use later"
-//        val preferences = getSharedPreferences("database", Context.MODE_PRIVATE)
-//        val savedName = preferences.getString("savedProductName", "This value does not exist")
-//        d("shrawan", "saved message: $savedName")
 
-  //      tvSavedProduct.text = savedName
+        btnFilterByPrice.setOnClickListener {
+            showInexpensive()
+        }
+        btnFilterByName.setOnClickListener {
+            showName()
+        }
+    }
 
-        val products = listOf(
-            Product("iPad", "shrawan", 2005, 260.50),
-            Product("Pixel", "sudeep", 2006, 350.00),
-            Product("Kotlin", "gunjan", 2009, 11112.00),
-            Product("Laptop", "sabin", 2020, 98.60),
-            Product("Mobile", "sajin", 2019, 100.60)
-        )
+    fun showInexpensive() {
+        val products = ProductData().allProducts().filter { it.cost < 100 }
+        showProducts(products)
+    }
+
+    fun showName() {
+        val products =
+            ProductData().allProducts().filter { it.owner.contains(AppConfig.filterByName, true) }
+        showProducts(products)
+    }
+
+    //            val products = ProductData().allProducts()
+//            showProducts(products)
+
+    private fun showProducts(products: List<Product>) {
+
+        tvProduct.text = ""
 
         var totalCost = 0.0
 
         products.forEach {
-            if (it.cost > minCost && it.cost < maxCost){
             tvProduct.append("${it.name} - ${it.owner} - ${it.yearPublished} - Rs. ${it.cost} \n\n ")
             totalCost += it.cost
-        }
         }
 
         d("shrawan", "Total cost $totalCost")
 
         tvTotalCost.text = "Rs. $totalCost"
-
     }
+
 }
+
+//        "Use later"
+//        val preferences = getSharedPreferences("database", Context.MODE_PRIVATE)
+//        val savedName = preferences.getString("savedProductName", "This value does not exist")
+//        d("shrawan", "saved message: $savedName")
+
+//      tvSavedProduct.text = savedName
