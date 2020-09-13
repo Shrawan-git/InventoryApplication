@@ -7,18 +7,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="140dp"
-        android:layout_height="59dp"
-        android:background="#673AB7"
-        android:text="Add to Inventory"
-        android:textColor="#FBFBFB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tvSavedProduct"
         android:layout_width="wrap_content"
@@ -29,4 +17,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
